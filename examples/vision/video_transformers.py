@@ -245,6 +245,16 @@ class PositionalEmbedding(layers.Layer):
         mask = tf.reduce_any(tf.cast(inputs, "bool"), axis=-1)
         return mask
 
+    def get_config(self):
+        config = super().get_config()
+        config.update(
+            {
+                "sequence_length": self.sequence_length,
+                "output_dim": self.output_dim,
+            }
+        )
+        return config
+
 
 """
 Now, we can create a subclassed layer for the Transformer.
@@ -277,6 +287,17 @@ class TransformerEncoder(layers.Layer):
         proj_input = self.layernorm_1(inputs + attention_output)
         proj_output = self.dense_proj(proj_input)
         return self.layernorm_2(proj_input + proj_output)
+
+    def get_config(self):
+        config = super().get_config()
+        config.update(
+            {
+                "embed_dim": self.embed_dim,
+                "dense_dim": self.dense_dim,
+                "num_heads": self.num_heads,
+            }
+        )
+        return config
 
 
 """
@@ -395,4 +416,11 @@ to_gif(test_frames[:MAX_SEQ_LENGTH])
 """
 The performance of our model is far from optimal, because it was trained on a
 small dataset.
+"""
+"""
+**Example available on HuggingFace**
+
+| Trained Model | Demo |
+| :--: | :--: |
+| [![Generic badge](https://img.shields.io/badge/%F0%9F%A4%97%20Model-Video%20Transformers-blue)](https://huggingface.co/keras-io/video-transformers) | [![Generic badge](https://img.shields.io/badge/%F0%9F%A4%97%20Space-Video%20Transformers-blue)](https://huggingface.co/spaces/keras-io/video-transformers) |
 """
