@@ -5,6 +5,7 @@ Date created: 2022/01/07
 Last modified: 2022/01/10
 Description: Training a ViT on smaller datasets with shifted patch tokenization and locality self-attention.
 Accelerator: GPU
+Keras 3 Conversion initiated by: [Pavan Kumar Singh](https://github.com/pksX01)
 """
 """
 ## Introduction
@@ -33,14 +34,6 @@ The main ideas are:
 This example implements the ideas of the paper. A large part of this
 example is inspired from
 [Image classification with Vision Transformer](https://keras.io/examples/vision/image_classification_with_vision_transformer/).
-
-_Note_: This example requires TensorFlow 2.6 or higher, as well as
-[TensorFlow Addons](https://www.tensorflow.org/addons), which can be
-installed using the following command:
-
-```python
-pip install -qq -U tensorflow-addons
-```
 """
 """
 ## Setup
@@ -73,11 +66,6 @@ INPUT_SHAPE = (32, 32, 3)
 print(f"x_train shape: {x_train.shape} - y_train shape: {y_train.shape}")
 print(f"x_test shape: {x_test.shape} - y_test shape: {y_test.shape}")
 
-x_train = x_train[:100]
-y_train = y_train[:100]
-x_test = x_test[:20]
-y_test = y_test[:20]
-
 """
 ## Configure the hyperparameters
 
@@ -99,7 +87,7 @@ LEARNING_RATE = 0.001
 WEIGHT_DECAY = 0.0001
 
 # TRAINING
-EPOCHS = 1  # 50
+EPOCHS = 50
 
 # ARCHITECTURE
 LAYER_NORM_EPS = 1e-6
@@ -555,6 +543,4 @@ supplementary of the paper.
 
 I would like to thank [Jarvislabs.ai](https://jarvislabs.ai/) for
 generously helping with GPU credits.
-
-You can use the trained model hosted on [Hugging Face Hub](https://huggingface.co/keras-io/vit_small_ds_v2) and try the demo on [Hugging Face Spaces](https://huggingface.co/spaces/keras-io/vit-small-ds).
 """
