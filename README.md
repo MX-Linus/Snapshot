@@ -2,6 +2,8 @@
 
 This repository hosts the code used to generate the [keras.io](https://keras.io) website.
 
+This project is tested with BrowserStack
+
 ## Generating a local copy of the website
 
 ```
